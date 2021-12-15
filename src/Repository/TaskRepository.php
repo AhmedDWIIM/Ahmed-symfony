@@ -19,6 +19,17 @@ class TaskRepository extends ServiceEntityRepository
         parent::__construct($registry, Task::class);
     }
 
+    public function save(Task $task): void
+    {
+        $this->getEntityManager()->persist(($task));
+        $this->getEntityManager()->flush();
+    }
+
+    public function delete(Task $task): void
+    {
+        $this->getEntityManager()->remove(($task));
+        $this->getEntityManager()->flush();
+    }
     // /**
     //  * @return Task[] Returns an array of Task objects
     //  */

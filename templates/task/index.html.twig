@@ -14,7 +14,7 @@
     Your tasks list :
     <ul>
          {% for task in tasks %}
-            <li>{{ task.title }}</li>
+            <li><a href="{{ path('task_details', {'id': task.id}) }}">{{ task.title }}</a></li>
         {% endfor %}
     </ul>
 </div>

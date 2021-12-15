@@ -10,9 +10,18 @@
 
     <div class="example-wrapper">
         <h1>{{task.title}}</h1>
+        <button><a href="{{ path('tasks_list') }}">Back to list</a> </button>
         <ul>
             <li>{{task.title}}</li>
             <li>{{task.done ? 'true' : 'false'}}</li>
+
+                <button>
+                    <a href="{{ path('delete_task', {'id': task.id}) }}">Delete</a>
+                </button>
+                <button>
+                    <a href="{{ path('update_task', {'id': task.id}) }}">Update</a>
+                </button>
+
         </ul>
     </div>
 {% endblock %}
