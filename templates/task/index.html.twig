@@ -9,12 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello ! ✅</h1>
 
-    This friendly message is coming from:
+    Your tasks list :
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/ahmed_project/src/Controller/TaskController.php'|file_link(0) }}">src/Controller/TaskController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/ahmed_project/templates/task/index.html.twig'|file_link(0) }}">templates/task/index.html.twig</a></code></li>
+         {% for task in tasks %}
+            <li>{{ task.title }}</li>
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}
