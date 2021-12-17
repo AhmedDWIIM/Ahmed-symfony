@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\TaskRepository;
+use App\Entity\Category;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TaskRepository;
 
 /**
  * @ORM\Entity(repositoryClass=TaskRepository::class)
@@ -32,10 +33,28 @@ class Task
      */
     private $done;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="tasks")
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
 
     public function getTitle(): ?string
     {
