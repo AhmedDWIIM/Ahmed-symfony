@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Entity\Category;
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TaskRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=TaskRepository::class)
@@ -35,26 +36,29 @@ class Task
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="tasks")
+     * @ORM\Column(type="integer")
      */
-    private $category;
+    private $priority;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $finishDate;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="Task")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
 
     public function getTitle(): ?string
     {
@@ -88,6 +92,57 @@ class Task
     public function setDone(bool $done): self
     {
         $this->done = $done;
+
+        return $this;
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(int $priority): self
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    public function getFinishDate(): ?\DateTimeInterface
+    {
+        return $this->finishDate;
+    }
+
+    public function setFinishDate(?\DateTimeInterface $finishDate): self
+    {
+        $this->finishDate = $finishDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeTask($this);
+        }
 
         return $this;
     }
