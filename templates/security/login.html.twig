@@ -4,7 +4,7 @@
 
 {% block body %}
   <h1 id="loginH1" class="h3 mb-3 font-weight-normal">WELCOME TO AIDSH !</h1>
-<form method="post">
+<form id="myform" method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -15,7 +15,7 @@
         </div>
     {% endif %}
 
-    <form class="row g-3">
+    <form  class="row g-3">
         <h1 class="h3 mb-3 font-weight-normal">Please login !</h1>
         <div class="col-auto">
             <label for="inputEmail">Email</label>

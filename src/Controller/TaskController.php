@@ -89,7 +89,7 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('tasks_list');
         }
 
-        return $this->renderForm('task/new.html.twig', [
+        return $this->renderForm('task/update.html.twig', [
             'form' => $form
         ]);
     }

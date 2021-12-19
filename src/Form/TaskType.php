@@ -5,11 +5,12 @@ namespace App\Form;
 use App\Entity\Task;
 use App\Repository\TaskRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TaskType extends AbstractType
@@ -19,11 +20,25 @@ class TaskType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('done', CheckboxType::class, [
-                'required' => false,
+            ->add('finishDate', DateType::class, [
+                'widget' => 'choice',
+            ])
+            ->add('priority', ChoiceType::class, [
+                'choices'  => [
+                    'Low' => 1,
+                    'Medium' =>2,
+                    'High' => 3,
+                ],
+            ])
+            ->add('done', ChoiceType::class, [
+                'choices'  => [
+                    'To do' => 'To do',
+                    'In progress' => 'In progress',
+                    'Done' => 'Done',
+                ],
             ])
             ->add('submit', SubmitType::class, [
-                "label" => 'create',
+                "label" => 'submit',
             ])
         ;
     }

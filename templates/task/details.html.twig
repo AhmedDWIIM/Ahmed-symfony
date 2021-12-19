@@ -10,15 +10,28 @@
 
     <div class="container">
         <button type="button" class="btn btn-outline-dark"><a href="{{ path('tasks_list') }}">Back to list</a> </button>
-        <h1>{{task.title}}</h1>
+        <h1>{{task.title}}  {{ task.id }}</h1>
 
-        <ul>
-            <p>{{task.description}}</p>
-            <li>{{task.done ? 'true' : 'false'}}</li>
-
+        <ul id="detailLi">
+            <p id="desc">{{task.description}}</p>
+            List of Heros :
+            <ul id="myH">
+                {% for user in task.getUsers %}
+                    <li id="heros" style="background-color: #{{ random(000000,999999) }};">{{user.name}}</li>
+                {% endfor %}
+            </ul>
+            <li style="{{task.done == 'To do' ? 'color : red'}}{{task.done == 'In progress' ? 'color : yellow'}}{{task.done == 'Done' ? 'color : green'}}; font-weight: bold;">Status : {{task.done}} </li>
+            <li>Priority : {{task.priority == 1 ? 'Low'}}{{task.priority == 2 ? 'Medium'}}{{task.priority == 3 ? 'High'}} </li>
+            {% if task.finishDate %}
+            <li>End date : {{ task.finishDate|date('d-m-Y')}} </li>
+            {% endif %}
+            {% if app.user %}
+                {% if app.user.name == 'ProfessorX' %}
                 <button type="button" class="btn btn-danger">
                     <a href="{{ path('delete_task', {'id': task.id}) }}">Delete</a>
                 </button>
+                {% endif %}
+            {% endif %}
                 <button type="button" class="btn btn-info">
                     <a href="{{ path('update_task', {'id': task.id}) }}">Update</a>
                 </button>

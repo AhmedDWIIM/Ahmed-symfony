@@ -30,7 +30,7 @@ class Task
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $done;
 
@@ -84,12 +84,12 @@ class Task
         return $this;
     }
 
-    public function getDone(): ?bool
+    public function getDone(): ?string
     {
         return $this->done;
     }
 
-    public function setDone(int $done): self
+    public function setDone(string $done): self
     {
         $this->done = $done;
 

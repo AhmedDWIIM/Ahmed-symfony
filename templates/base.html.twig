@@ -24,9 +24,16 @@
                 <img src="https://ahmed-jibrilaitouaret.fr/img/img.png" alt="logo" height="80" />
 
             </a>
+            <div>
+            {% if app.user %}
+                {% if app.user.name == 'ProfessorX' %}
+                <button type="button" class="btn btn-outline-light" ><a href="{{ path('create_task') }}">Create mission</a></button>
+                {% endif %}
+            {% endif %}
             {% if app.user %}
             <button type="button" class="btn btn-outline-light" ><a href="{{ path('app_logout') }}">Logout</a></button>
             {% endif %}
+            </div>
         </div>
     </nav>
 
