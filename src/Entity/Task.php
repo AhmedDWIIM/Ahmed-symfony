@@ -30,7 +30,7 @@ class Task
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer")
      */
     private $done;
 
@@ -89,7 +89,7 @@ class Task
         return $this->done;
     }
 
-    public function setDone(bool $done): self
+    public function setDone(int $done): self
     {
         $this->done = $done;
 

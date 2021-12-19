@@ -47,6 +47,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $Task;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->Task = new ArrayCollection();
@@ -173,6 +178,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeTask(Task $task): self
     {
         $this->Task->removeElement($task);
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

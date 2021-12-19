@@ -34,13 +34,13 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
         $category = new Category();
         $category->setName('Boring');
         $manager->persist($category);
-        for ($i=0;$i<10; $i++){
+        for ($i=1;$i<6; $i++){
             $task = new Task();
-            $task -> setTitle('Task number'.$i);
-            $task-> setPriority(1);
+            $task -> setTitle('Mission number : '.$i);
+            $task-> setPriority(rand(1,3));
             //$task-> addUser($myUserList);
-            $task -> setDescription('Task description');
-            $task -> setDone(false);
+            $task -> setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
+            $task -> setDone(rand(1,3));
             $manager -> persist($task);
             //var_dump($task->getUserTasks()[0]->getName());
         }
@@ -59,4 +59,6 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             UserFixtures::class,
         ];
     }
+
+
 }

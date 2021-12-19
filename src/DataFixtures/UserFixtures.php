@@ -20,15 +20,22 @@ class UserFixtures extends Fixture
         $this->client = $client;
     }
 
+    /**
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     */
     public function load(ObjectManager $manager): void
     {
 
-            $user = new User();
-            $user -> setEmail('ProfessorX@AIDSH.fr');
-            $user -> setName('ProfessorX');
-            $user -> setRoles(['ROLE_ADMIN']);
-            $user -> setPassword($this->userPasswordHasher->hashPassword($user,'password'));
-            $manager -> persist($user);
+        $user = new User();
+        $user -> setEmail('ProfessorX@AIDSH.fr');
+        $user -> setName('ProfessorX');
+        $user -> setRoles(['ROLE_ADMIN']);
+        $user -> setPassword($this->userPasswordHasher->hashPassword($user,'password'));
+        $manager -> persist($user);
 
         for ($i=1;$i<11; $i++){
             $response = $this->client->request(
@@ -46,10 +53,12 @@ class UserFixtures extends Fixture
             // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
             $email = str_replace(' ','',strtolower($content['name']).'@AIDSH.fr');
             $name = $content['name'];
+            $image = $content['image']['url'];
 
             $user = new User();
             $user -> setEmail($email);
             $user -> setName($name);
+            $user -> setImage($image);
             $user -> setRoles(['ROLE_SUPER_HERO']);
             $user -> setPassword($this->userPasswordHasher->hashPassword($user,'password'));
             $manager -> persist($user);

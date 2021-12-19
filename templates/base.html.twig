@@ -4,9 +4,13 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="../assets/styles/app.scss">
         {% endblock %}
 
         {% block javascripts %}
@@ -14,7 +18,18 @@
         {% endblock %}
     </head>
     <body>
-        <button><a href="{{ path('app_logout') }}">Logout</a></button>
+    <nav class="navbar navbar-light" style="background-color: #8cb6f3;">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="https://ahmed-jibrilaitouaret.fr/img/img.png" alt="logo" height="80" />
+
+            </a>
+            {% if app.user %}
+            <button type="button" class="btn btn-outline-light" ><a href="{{ path('app_logout') }}">Logout</a></button>
+            {% endif %}
+        </div>
+    </nav>
+
         {% block body %}{% endblock %}
     </body>
 </html>

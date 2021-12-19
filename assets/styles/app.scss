@@ -1,5 +1,65 @@
-$primary : darken(#428bca,20%);
+
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
 body {
-    background-color: lightgray;
+    background-color: white;
+    color: white;
+    font-family: 'Alata', sans-serif;
+    background-image: url("https://i.pinimg.com/564x/0a/8f/40/0a8f40587e48817b5a9eec5fde975d70.jpg");
+    background-repeat: repeat;
+
+}
+
+form {
+    width: 50% !important;
+    margin: 60px auto 20px auto;
+    background-color: rgba(140, 182, 243, 0.8);
+    border-radius: 10px;
+    padding: 30px;
+    -webkit-box-shadow: 0px 2px 15px -2px rgba(255,255,255,0.6);
+    box-shadow: 0px 2px 12px -2px rgba(255,255,255,0.6);
+}
+
+#loginH1{
+    background-color: rgba(140, 182, 243, 0.3);
+    font-size: 3em !important;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    color: #8cb6f3;
+}
+
+
+a {
+    color: white !important;
+
+}
+a:hover {
+    color: #3177e7 !important;
+
+}
+
+.container{
+    width: 70% !important;
+    margin: 60px auto 20px auto;
+    background-color: rgba(140, 182, 243, 0.8);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.box1{
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.profil1{
+    margin: 60px auto 20px auto;
+    background-color: rgba(140, 182, 243, 0.8);
+    border-radius: 10px;
+    padding: 30px;
+}
+.box1 img{
+    width: 150px !important;
 }
