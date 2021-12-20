@@ -27,14 +27,20 @@
             {% endif %}
             {% if app.user %}
                 {% if app.user.name == 'ProfessorX' %}
+                    {% if task.done == 'To do' %}
                 <button type="button" class="btn btn-danger">
                     <a href="{{ path('delete_task', {'id': task.id}) }}">Delete</a>
                 </button>
+                    {% endif %}
                 {% endif %}
             {% endif %}
+            {% for user in task.getUsers %}
+                {% if user.name == app.user.name %}
                 <button type="button" class="btn btn-info">
                     <a href="{{ path('update_task', {'id': task.id}) }}">Update</a>
                 </button>
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
 {% endblock %}

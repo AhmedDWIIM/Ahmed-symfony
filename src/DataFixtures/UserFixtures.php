@@ -34,6 +34,7 @@ class UserFixtures extends Fixture
         $user -> setEmail('ProfessorX@AIDSH.fr');
         $user -> setName('ProfessorX');
         $user -> setRoles(['ROLE_ADMIN']);
+        $user -> setImage('https://www.myutaku.com/media/personnage/4162.jpg');
         $user -> setPassword($this->userPasswordHasher->hashPassword($user,'password'));
         $manager -> persist($user);
 
