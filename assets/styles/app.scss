@@ -89,3 +89,12 @@ a:hover {
     list-style: none;
     font-size: 1.5em;
 }
+#task_users{
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.form-check{
+    min-width: 150px;
+    max-width: 500px;
+}

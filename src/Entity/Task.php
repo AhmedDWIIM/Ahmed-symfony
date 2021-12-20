@@ -46,7 +46,7 @@ class Task
     private $finishDate;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="Task")
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="Task")
      */
     private $users;
 

@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Task::class, inversedBy="users")
+     * @ORM\ManyToMany(targetEntity=Task::class, mappedBy="users")
      */
     private $Task;
 
